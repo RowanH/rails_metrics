@@ -11,7 +11,7 @@ module RailsMetrics
         RailsMetrics.listen_request do
           response = notifications.instrument "rack.request",
             :path => env["PATH_INFO"], :method => env["REQUEST_METHOD"],
-            :instrumenter_id => notifications.instrumenter.id do
+            :instrumenter_id => (env["INSTRUMENT_ID"] = notifications.instrumenter.id ; env["INSTRUMENT_ID"])do
             @app.call(env)
           end
         end

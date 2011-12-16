@@ -27,6 +27,7 @@ module RailsMetrics
     ORM.metric_model_properties = %w[
       name:string
       duration:integer
+      instrument_id:string
       request_id:integer
       parent_id:integer
       payload:text

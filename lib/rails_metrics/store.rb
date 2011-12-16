@@ -50,6 +50,9 @@ module RailsMetrics
     # the instrumentation event.
     def configure(args)
       self.payload    = RailsMetrics::PayloadParser.filter(name, args[4])
+      if args[4] && args[4][:instrumenter_id] 
+        self.instrument_id = args[4][:instrumenter_id]
+      end
       self.name       = args[0].to_s
       self.started_at = args[1]
       self.duration   = normalized_duration(self.payload, args)
